@@ -1,3 +1,3 @@
 import { PrismaClient } from "@prisma/client";
 
-export class PrismService extends PrismaClient{}
+export class PrismaService extends PrismaClient {}
