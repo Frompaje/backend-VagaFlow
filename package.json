@@ -7,13 +7,14 @@
     "init": "^0.1.2",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
-    "ts-dotenv": "^0.9.1"
+    "ts-dotenv": "^0.9.1",
+    "vitest-mock-extended": "^2.0.2"
   },
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test":"vitest",
+    "test": "vitest",
     "dev": "tsx --watch src/"
   },
   "keywords": [],
