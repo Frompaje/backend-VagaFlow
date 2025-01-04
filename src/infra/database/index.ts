@@ -1,3 +1,3 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient();
+export class PrismService extends PrismaClient{}
