@@ -12,4 +12,12 @@ export class UserRepositories {
       },
     });
   }
+
+  async findByEmail(email: string) {
+    const user = await this.prismaService.user.findUnique({
+      where: { email },
+    });
+
+    return  user ;
+  }
 }
