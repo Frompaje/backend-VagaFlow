@@ -18,6 +18,6 @@ export class UserRepositories {
       where: { email },
     });
 
-    return  user ;
+    return user;
   }
 }
