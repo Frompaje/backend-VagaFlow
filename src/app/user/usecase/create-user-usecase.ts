@@ -1,3 +1,4 @@
+import { logger } from "../../../infra/logger";
 import { UserAlreadyExistsError } from "../../../shared/error/user-already-exists-error";
 import { UserRepositories } from "../repository";
 
@@ -8,6 +9,7 @@ export class CreateUserUseCase {
     const user = await this.repository.findByEmail(email);
 
     if (user) {
+      logger.error("[ERROR-001] User já existe")
       throw new UserAlreadyExistsError();
     }
 
