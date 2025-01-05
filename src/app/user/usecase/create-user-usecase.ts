@@ -9,11 +9,12 @@ export class CreateUserUseCase {
     const user = await this.repository.findByEmail(email);
 
     if (user) {
-      logger.error("[ERROR-001] User já existe")
+      logger.error("[ERROR-001] User já existe");
       throw new UserAlreadyExistsError();
     }
 
     await this.repository.create({ name, email, password });
+    logger.info("[ USECASE ] User created successfully");
   }
 }
 
