@@ -3,7 +3,6 @@ import { UserRepositories } from "../../repository";
 import { CreateUserUseCase } from "../create-user-usecase";
 import { mock } from "vitest-mock-extended";
 import { mockRepository } from "../../repository/test/mock";
-import { UserAlreadyExistsError } from "../../../../shared/error/user-already-exists-error";
 
 describe("User UseCase", () => {
   let repository: UserRepositories;
@@ -21,10 +20,12 @@ describe("User UseCase", () => {
       password: "asdQWE123!@#",
     };
 
-    vi.spyOn(usecase, "execute");
     await usecase.execute(input);
 
-    expect(usecase.execute).toBeCalledTimes(1);
+    expect(repository.findByEmail).toBeCalledTimes(1);
+    expect(repository.create).toBeCalledTimes(1);
+    expect(repository.findByEmail).toHaveBeenCalledWith(input.email);
+    expect(repository.create).toHaveBeenCalledWith(input);
   });
 
   test("[Fail] Show an error if the user already exists", async () => {
@@ -45,8 +46,11 @@ describe("User UseCase", () => {
 
     vi.spyOn(repository, "findByEmail").mockResolvedValueOnce(outputRepository);
 
-    expect(async () => await usecase.execute(input)).rejects.toThrow(
-      UserAlreadyExistsError
-    );
+    const sut = usecase.execute(input);
+
+    expect(sut).rejects.toThrow("[ERROR-001] User já existe");
+
+    expect(repository.findByEmail).toBeCalledTimes(1);
+    expect(repository.findByEmail).toHaveBeenCalledWith(input.email);
   });
 });
