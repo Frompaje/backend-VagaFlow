@@ -2,6 +2,7 @@
   "dependencies": {
     "@prisma/client": "^6.1.0",
     "@tsconfig/node19": "^19.1.4",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "init": "^0.1.2",
@@ -23,6 +24,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "prisma": "^6.1.0",

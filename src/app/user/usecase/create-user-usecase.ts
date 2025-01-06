@@ -1,6 +1,7 @@
 import { logger } from "../../../infra/logger";
 import { UserAlreadyExistsError } from "../../../shared/error/user-already-exists-error";
 import { UserRepositories } from "../repository";
+import { hashSync } from "bcryptjs";
 
 export class CreateUserUseCase {
   constructor(private readonly repository: UserRepositories) {}
@@ -13,7 +14,9 @@ export class CreateUserUseCase {
       throw new UserAlreadyExistsError();
     }
 
-    await this.repository.create({ name, email, password });
+    const passwordHashed = hashSync(password, 8);
+
+    await this.repository.create({ name, email, password: passwordHashed });
     logger.info("[ USECASE ] User created successfully");
   }
 }
