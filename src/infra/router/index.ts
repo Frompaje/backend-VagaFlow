@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { UserController } from "../controller/user";
+import { Express } from "express";
+import userRouter from "../../app/user/router";
+import jobRouter from "../../app/job/router";
 
-export const router = Router();
-
-const { create } = new UserController();
-
-router.post("/",create);
+export function rootRouter(app: Express) {
+  app.use("/user", userRouter);
+  app.use("/job", jobRouter);
+}
