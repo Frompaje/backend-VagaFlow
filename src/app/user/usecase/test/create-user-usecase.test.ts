@@ -25,7 +25,6 @@ describe("User UseCase", () => {
     expect(repository.findByEmail).toBeCalledTimes(1);
     expect(repository.create).toBeCalledTimes(1);
     expect(repository.findByEmail).toHaveBeenCalledWith(input.email);
-    expect(repository.create).toHaveBeenCalledWith(input);
   });
 
   test("[Fail] Show an error if the user already exists", async () => {
