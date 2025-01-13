@@ -1,8 +1,8 @@
 import { Router } from "express";
+import { JobController } from "../controller";
 
-const jobRouter = Router()
+const jobRouter = Router();
+const { create } = new JobController();
 
-
-
-
-export default jobRouter
+jobRouter.post("/", create);
+export default jobRouter;

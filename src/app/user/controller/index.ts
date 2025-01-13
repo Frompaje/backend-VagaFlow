@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { UserCreateSchema } from "./schema/user-create-schema";
-import { UserRepositories } from "../../../app/user/repository";
-import { PrismaService } from "../../database";
-import { CreateUserUseCase } from "../../../app/user/usecase/create-user-usecase";
+import { UserRepositories } from "../repository";
+import { PrismaService } from "../../../infra/database";
+import { CreateUserUseCase } from "../usecase/create-user-usecase";
 
 export class UserController {
   async create(req: Request, res: Response) {

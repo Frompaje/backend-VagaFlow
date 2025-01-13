@@ -7,6 +7,6 @@ const app = express();
 
 app.use(express.json());
 
-app.use(rootRouter)
+rootRouter(app);
 
 app.listen(env.PORT, () => logger.info("Server is running"));

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, test } from "vitest";
 import { JobRepositoy } from "..";
 import { mock } from "vitest-mock-extended";
-import { mockRepository } from "../mock";
+import { mockRepository } from "./mock";
 
 describe("Job Repository", () => {
   let repository: JobRepositoy;
