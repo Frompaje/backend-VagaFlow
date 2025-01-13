@@ -3,7 +3,7 @@ import { JobRepositoy } from "..";
 import { mock } from "vitest-mock-extended";
 import { mockRepository } from "./mock";
 
-describe("Job Repository", () => {
+describe("[Create] Job Repository", () => {
   let repository: JobRepositoy;
 
   beforeEach(() => {

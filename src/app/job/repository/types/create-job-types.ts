@@ -1,4 +1,4 @@
-export type Input = {
+export type CreateInput = {
   recruiterName: string;
   position: string;
   message: string;
