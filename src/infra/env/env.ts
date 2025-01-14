@@ -9,4 +9,5 @@ export const env = {
   PG_PASSWORD: process.env["PG_PASSWORD"],
   PG_DATABASE: process.env["PG_DATABASE"],
   DATABASE_URL: process.env["DATABASE_URL"],
+  SECRET_JWT: process.env["SECRET_JWT"] || "SENHASUPERSECRETA",
 };

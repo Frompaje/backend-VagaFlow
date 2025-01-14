@@ -1,4 +1,4 @@
-import { compare, compareSync } from "bcryptjs";
+import { compareSync } from "bcryptjs";
 import { UserRepositories } from "../repository";
 import { UserInvalidData } from "../../../shared/error/user-invalid-data-error";
 
