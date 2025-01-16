@@ -7,6 +7,7 @@ import { userLoginSchema } from "./schema/user-login-schema";
 import { LoginUserUseCase } from "../usecase/login-user-usecase";
 import * as jwt from "jsonwebtoken";
 import { env } from "../../../infra/env/env";
+import { AuthMiddleware } from "../../../infra/middlewares/auth";
 
 export class UserController {
   async create(req: Request, res: Response) {
@@ -27,21 +28,15 @@ export class UserController {
     const prismaService = new PrismaService();
     const repository = new UserRepositories(prismaService);
     const usecase = new LoginUserUseCase(repository);
+    const jwt = new AuthMiddleware();
 
     const user = await usecase.execute({ email, password });
 
-    const token = jwt.sign(
-      {
-        sub: {
-          user: {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-          },
-        },
-      },
-      env.SECRET_JWT
-    );
+    const token = jwt.createToken({
+      name: user.name,
+      id: user.id,
+      email: user.email,
+    });
 
     res.status(200).send({
       user: user.name,
