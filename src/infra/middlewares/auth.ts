@@ -27,7 +27,7 @@ export class AuthMiddleware {
       email: string;
     };
 
-    if (payload) {
+    if (!payload) {
       throw new Error("Token invalido");
     }
 
