@@ -1,6 +1,7 @@
 import { compareSync } from "bcryptjs";
 import { UserRepositories } from "../repository";
 import { UserInvalidData } from "../../../shared/error/user-invalid-data-error";
+import { UserPasswordNotMatchedError } from "../../../shared/error/user-password-not-matched-error.ts.";
 
 export class LoginUserUseCase {
   constructor(private readonly repository: UserRepositories) {}
@@ -19,7 +20,7 @@ export class LoginUserUseCase {
     const isSamePassword = compareSync(password, user.password);
 
     if (!isSamePassword) {
-      throw new UserInvalidData();
+      throw new UserPasswordNotMatchedError();
     }
 
     return user;

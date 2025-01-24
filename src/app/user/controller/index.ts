@@ -5,8 +5,6 @@ import { PrismaService } from "../../../infra/database";
 import { CreateUserUseCase } from "../usecase/create-user-usecase";
 import { userLoginSchema } from "./schema/user-login-schema";
 import { LoginUserUseCase } from "../usecase/login-user-usecase";
-import * as jwt from "jsonwebtoken";
-import { env } from "../../../infra/env/env";
 import { AuthMiddleware } from "../../../infra/middlewares/auth";
 
 export class UserController {
@@ -24,7 +22,7 @@ export class UserController {
 
   async login(req: Request, res: Response) {
     const { email, password } = userLoginSchema.parse(req.body);
-
+    
     const prismaService = new PrismaService();
     const repository = new UserRepositories(prismaService);
     const usecase = new LoginUserUseCase(repository);
